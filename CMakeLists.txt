@@ -11,8 +11,8 @@ set (EXE_NAME flight_planner)
 #   set (input02 "train_target.csv")
 # etc....
 
-set (input01 "input03.txt")
-set (input02 "")
+#set (input01 "input03.txt")
+#set (input02 "")
 
 #
 ##########################################
@@ -24,5 +24,13 @@ endforeach()
 
 set(CMAKE_CXX_STANDARD 14)
 #set(CMAKE_CXX_FLAGS_DEBUG "-O3")
-add_executable(${EXE_NAME} main.cpp)
+add_executable(${EXE_NAME} main.cpp
+                            DSStack.cpp DSStack.h
+                            DSList.h
+                            DSAdjList.cpp DSAdjList.h
+                            DSString.h  DSString.cpp
+                            test.cpp
+                            FlightPlanner.cpp FlightPlanner.h
+                            Flight.cpp Flight.h
+                            FlightAdjList.cpp FlightAdjList.h)
 
