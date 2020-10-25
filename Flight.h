@@ -2,6 +2,10 @@
 // Created by Kevin Leong on 10/24/20.
 //
 
+#include <iostream>
+
+using namespace std;
+
 #ifndef INC_20F_FLT_PLN_FLIGHT_H
 #define INC_20F_FLT_PLN_FLIGHT_H
 
@@ -25,6 +29,9 @@ public:
     Flight(const Flight& copy);
 
     DSString getOrigin();
+    DSString getDestination();
+
+    void printFlight();
 };
 
 

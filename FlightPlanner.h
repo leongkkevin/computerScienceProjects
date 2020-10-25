@@ -8,6 +8,9 @@
 #include "Flight.h"
 #include "FlightAdjList.h"
 
+#include "DSAdjList.h"
+#include "DSStack.h"
+
 using namespace std;
 
 #ifndef INC_20F_FLT_PLN_FLIGHTPLANNER_H
@@ -15,7 +18,7 @@ using namespace std;
 
 
 void getFlights(ifstream &inFile);
-void runFlightPlanner(ifstream &inFile, ofstream &outFile);
+void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile);
 
 
 

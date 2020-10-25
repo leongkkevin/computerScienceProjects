@@ -26,7 +26,10 @@ public:
     void peek();
     bool isEmpty();
 
+    DSList<Type> saveStack();
+
     int getSize();
+    Type top();
 };
 
 template<typename Type>
@@ -63,7 +66,7 @@ Type DSStack<Type>::pop() {
 
 template<typename Type>
 void DSStack<Type>::peek() {
-
+    return this->stackList.getAt(this->stackList.getSize());
 }
 
 template<typename Type>
@@ -72,12 +75,29 @@ bool DSStack<Type>::isEmpty() {
 }
 
 template<typename Type>
+DSList<Type> DSStack<Type>::saveStack() {
+    DSList<Type> savedList;
+
+    for(int i = 0; i < this->getSize(); ++i){
+        savedList.push_back(this->stackList.getAt(i));
+    }
+
+    return savedList;
+}
+
+
+template<typename Type>
 int DSStack<Type>::getSize() {
     if(isEmpty()){
         return 0;
     } else {
         return this->stackList.getSize();
     }
+}
+
+template<typename Type>
+Type DSStack<Type>::top() {
+    return this->stackList.getAt(this->stackList.getSize());
 }
 
 

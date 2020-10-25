@@ -16,10 +16,11 @@ int main(int argc, char** argv){
         return runCatchTest(argc, argv);
     }
 
-    ifstream inFile(argv[1]);
-    ofstream outFile(argv[2]);
+    ifstream inFlightFile(argv[1]);
+    ifstream inFile(argv[2]);
+    ofstream outFule(argv[3]);
 
-    runFlightPlanner(inFile, outFile);
+    runFlightPlanner(inFlightFile, inFile);
 
 
 //    std::ofstream outputstream(argv[2]);

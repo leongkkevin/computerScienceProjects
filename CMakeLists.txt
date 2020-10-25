@@ -25,9 +25,9 @@ endforeach()
 set(CMAKE_CXX_STANDARD 14)
 #set(CMAKE_CXX_FLAGS_DEBUG "-O3")
 add_executable(${EXE_NAME} main.cpp
-                            DSStack.cpp DSStack.h
+        DSStack.h
                             DSList.h
-                            DSAdjList.cpp DSAdjList.h
+        DSAdjList.h
                             DSString.h  DSString.cpp
                             test.cpp
                             FlightPlanner.cpp FlightPlanner.h

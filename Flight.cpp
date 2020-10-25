@@ -35,3 +35,14 @@ Flight::Flight(const Flight& copy) {
 DSString Flight::getOrigin() {
     return this->origin;
 }
+
+DSString Flight::getDestination() {
+    return this->destination;
+}
+
+void Flight::printFlight() {
+    cout << "From: " << this->origin << " to " << this->destination << endl;
+    cout << "\tCosts: " << this->cost << " dollars" << endl;
+    cout << "\tTakes: " << this->time << " mins" << endl;
+    cout << "\tWith: " << this->airline << endl;
+}

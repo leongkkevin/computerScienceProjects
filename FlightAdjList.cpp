@@ -35,3 +35,20 @@ void FlightAdjList::add(Flight data) {
     newList.push_back(data);
     this->flightList.push_back(newList);
 }
+
+DSList<Flight> FlightAdjList::at(int index) {
+    return this->flightList.getAt(index);
+}
+
+
+int FlightAdjList::getSize() {
+    return this->flightList.getSize();
+}
+
+void FlightAdjList::printAdjList(){
+    for(int i = 0; i < flightList.getSize(); ++i){
+        for(int j = 0; j < flightList.getAt(i).getSize(); ++j){
+            flightList.getAt(i).getAt(j).printFlight();
+        }
+    }
+}

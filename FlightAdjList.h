@@ -19,6 +19,12 @@ public:
     int find(const DSString &search);
     void addToListNum(int listNum, Flight data);
     void add(Flight data);
+
+    DSList<Flight> at(int index);
+
+    int getSize();
+
+    void printAdjList();
 };
 
 

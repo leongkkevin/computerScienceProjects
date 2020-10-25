@@ -1,0 +1,8 @@
+7
+Dallas|Austin|98|47|Spirit
+Dallas|Austin|98|59|American
+Austin|Houston|95|39|United
+Dallas|Houston|101|51|Spirit
+Austin|Chicago|144|192|American
+Dallas|Las Vegas|90|101|SouthWest
+Las Vegas|Chicago|100|100|American
