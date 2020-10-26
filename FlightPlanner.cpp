@@ -64,42 +64,62 @@ void getFlights(ifstream &inFlightFile, FlightAdjList &flightAdjList){
 }
 
 void backtrackFlights(FlightAdjList &flightAdjList,
-        const DSString& wantedOrigin, const DSString& wantedDestination){
+        const DSString& wantedOrigin, const DSString& wantedDestination,
+        FlightAdjList &savedFlights){
 
     int wantedListNum = flightAdjList.find(wantedOrigin);
     DSStack<Flight> flightStack;
 
     DSList<Flight> savedPaths;
+    //FlightAdjList savedFlights;
 
-    //Trying to figure outt how to backtrack RECURSIVELY
-    //Pointers?
-    //FROM LEC
-    Flight* curr = &flightAdjList.at(wantedListNum).getAt(0);
+    for(int j = 0; j < flightAdjList.at(wantedListNum).getSize(); ++j ) {
 
-    flightStack.push(flightAdjList.at(wantedListNum).getAt(0));
-    while(flightStack.getSize() != 0){
-        if(flightStack.top().getDestination() == wantedDestination){
-            savedPaths = flightStack.saveStack();
-            flightStack.pop();
-        } else{
+        flightStack.push(flightAdjList.at(wantedListNum).getAt(j));
 
-        }
-    }
+        DSStack<int> iStack;
+        int i = 0;
+        while (!flightStack.isEmpty()) {
+            if (flightStack.top().getDestination() == wantedDestination) {
+                savedPaths = flightStack.saveStack();
+                savedFlights.addList(savedPaths);
+                flightStack.pop();
+                if(!iStack.isEmpty()){
+                    i = iStack.pop();
+                }
+                i++;
+            } else {
+                DSString destination = flightStack.top().getDestination();
+                int dest = flightAdjList.find(flightStack.top().getDestination());
+                int size = flightAdjList.at(dest).getSize();
 
-    //MY CODE
-    for(int i = 0; i < flightAdjList.at(wantedListNum).getSize(); ++i){
-        Flight checkFlight = flightAdjList.at(wantedListNum).getAt(i);
-        flightStack.push(checkFlight);
-        if(checkFlight.getDestination() == wantedDestination){
-            savedPaths = flightStack.saveStack();
-        }else{
-            int find = flightAdjList.find(checkFlight.getOrigin());
+                for (i; i < size; ++i) {
+                    Flight checkFlight = flightAdjList.at(dest).getAt(i);
+                    if (flightStack.searchStack(checkFlight)) {
+                        continue;
+                    } else {
+                        Flight pushFlight = flightAdjList.at(dest).getAt(i);
+                        flightStack.push(pushFlight);
+                        iStack.push(i);
+                        i = 0;
+                        break;
+                    }
+                }
+                if (i == size && !iStack.isEmpty()) {
+                    flightStack.pop();
+                    i = iStack.pop();
+                    i++;
+                } else if(iStack.isEmpty()){
+                    flightStack.pop();
+                    break;
+                }
+            }
         }
     }
 
 }
 
-void findFlights(FlightAdjList &flightAdjList, ifstream &inFile){
+void findFlights(FlightAdjList &flightAdjList, ifstream &inFile, FlightAdjList &savedFlights){
     char* inputChar = new char[100];
     DSString wantedOrigin;
     setString(wantedOrigin, inputChar, inFile, '|');
@@ -107,7 +127,10 @@ void findFlights(FlightAdjList &flightAdjList, ifstream &inFile){
     setString(wantedDestination, inputChar, inFile, '|');
 
     DSAdjList<DSString> savedPaths;
-    backtrackFlights(flightAdjList, wantedOrigin, wantedDestination);
+    backtrackFlights(flightAdjList, wantedOrigin, wantedDestination, savedFlights);
+}
+
+void sortFlights(FlightAdjList &savedFlights, const DSString &sortByC){
 
 }
 
@@ -121,6 +144,14 @@ void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile) {
     int numRequest = atoi(requestC);
 
     for(int i = 0; i < numRequest; ++i){
-        findFlights(flightAdjList, inFile);
+        FlightAdjList savedFlights;
+        findFlights(flightAdjList, inFile, savedFlights);
+
+        char sortByC[3];
+        inFile.getline(sortByC, 5, '\n');
+        DSString sortBy = sortByC;
+
+        //savedFlights.printAdjList();
+        sortFlights(savedFlights, sortByC);
     }
 }

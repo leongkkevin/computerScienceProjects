@@ -50,5 +50,11 @@ void FlightAdjList::printAdjList(){
         for(int j = 0; j < flightList.getAt(i).getSize(); ++j){
             flightList.getAt(i).getAt(j).printFlight();
         }
+        cout << "============================" << endl;
     }
+    cout << "============================" << endl;
+}
+
+void FlightAdjList::addList(DSList<Flight> newList) {
+    this->flightList.push_back(newList);
 }

@@ -46,3 +46,11 @@ void Flight::printFlight() {
     cout << "\tTakes: " << this->time << " mins" << endl;
     cout << "\tWith: " << this->airline << endl;
 }
+
+bool Flight::operator==(const Flight &check) const {
+    if(check.destination == this->destination || check.destination == this->origin){
+        return true;
+    } else{
+        return false;
+    }
+}

@@ -17,14 +17,17 @@ private:
 public:
     FlightAdjList();
     int find(const DSString &search);
+
     void addToListNum(int listNum, Flight data);
     void add(Flight data);
+    void addList(DSList<Flight> newList);
 
     DSList<Flight> at(int index);
 
     int getSize();
 
     void printAdjList();
+
 };
 
 

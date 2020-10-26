@@ -32,6 +32,8 @@ public:
     DSString getDestination();
 
     void printFlight();
+
+    bool operator== (const Flight&) const;
 };
 
 

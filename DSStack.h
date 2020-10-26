@@ -30,6 +30,8 @@ public:
 
     int getSize();
     Type top();
+
+    bool searchStack(const Type& inquiry);
 };
 
 template<typename Type>
@@ -97,7 +99,22 @@ int DSStack<Type>::getSize() {
 
 template<typename Type>
 Type DSStack<Type>::top() {
-    return this->stackList.getAt(this->stackList.getSize());
+    return this->stackList.getAt(this->stackList.getSize() - 1);
+}
+
+template<typename Type>
+bool DSStack<Type>::searchStack(const Type& inquiry) {
+    bool toReturn;
+    for(int i = 0; i < this->stackList.getSize(); ++i){
+        if(stackList.getAt(i) == inquiry){
+            toReturn = true;
+            break;
+        } else {
+            toReturn = false;
+        }
+    }
+
+    return toReturn;
 }
 
 
