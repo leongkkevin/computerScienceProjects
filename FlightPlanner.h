@@ -20,6 +20,9 @@ using namespace std;
 void getFlights(ifstream &inFile);
 void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile);
 
+void sortFlights(FlightAdjList &savedFlights, const DSString &sortBy);
+
+
 
 
 #endif //INC_20F_FLT_PLN_FLIGHTPLANNER_H

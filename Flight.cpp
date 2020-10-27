@@ -14,7 +14,7 @@ Flight::Flight() {
 }
 
 Flight::Flight(const DSString& origin, const DSString& destination,
-        int cost, int time,
+               float cost, int time,
         const DSString& airline) {
 
     this->origin = origin;
@@ -35,9 +35,14 @@ Flight::Flight(const Flight& copy) {
 DSString Flight::getOrigin() {
     return this->origin;
 }
-
 DSString Flight::getDestination() {
     return this->destination;
+}
+float Flight::getCost() {
+    return this->cost;
+}
+int Flight::getTime() {
+    return this->time;
 }
 
 void Flight::printFlight() {

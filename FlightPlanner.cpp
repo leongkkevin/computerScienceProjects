@@ -71,7 +71,6 @@ void backtrackFlights(FlightAdjList &flightAdjList,
     DSStack<Flight> flightStack;
 
     DSList<Flight> savedPaths;
-    //FlightAdjList savedFlights;
 
     for(int j = 0; j < flightAdjList.at(wantedListNum).getSize(); ++j ) {
 
@@ -116,7 +115,6 @@ void backtrackFlights(FlightAdjList &flightAdjList,
             }
         }
     }
-
 }
 
 void findFlights(FlightAdjList &flightAdjList, ifstream &inFile, FlightAdjList &savedFlights){
@@ -126,15 +124,33 @@ void findFlights(FlightAdjList &flightAdjList, ifstream &inFile, FlightAdjList &
     DSString wantedDestination;
     setString(wantedDestination, inputChar, inFile, '|');
 
-    DSAdjList<DSString> savedPaths;
     backtrackFlights(flightAdjList, wantedOrigin, wantedDestination, savedFlights);
+
+    if(savedFlights.getSize() == 0){
+        Flight noFlight(wantedOrigin, wantedDestination, 0, 0, "None");
+        savedFlights.add(noFlight);
+    }
+
+    delete[] inputChar;
 }
 
-void sortFlights(FlightAdjList &savedFlights, const DSString &sortByC){
+void sortFlights(FlightAdjList &savedFlights, const DSString &sortBy, FlightAdjList &organizedFlights){
+    if(sortBy == "C"){
+        //cout << "BY COST: " << endl;
+        organizedFlights = savedFlights.sortByCost();
+    } else if(sortBy == "T"){
+        //cout << "BY TIME: " << endl;
+        organizedFlights = savedFlights.sortByTime();
+    }
+
+    //organizedFlights.printAdjList();
+}
+
+void printFlights(FlightAdjList &organizedFlights, ofstream &outFile){
 
 }
 
-void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile) {
+void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile, ofstream &outFile) {
     FlightAdjList flightAdjList;
     getFlights(inFlightFile, flightAdjList);
     //flightAdjList.printAdjList();
@@ -150,8 +166,12 @@ void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile) {
         char sortByC[3];
         inFile.getline(sortByC, 5, '\n');
         DSString sortBy = sortByC;
-
         //savedFlights.printAdjList();
-        sortFlights(savedFlights, sortByC);
+
+        FlightAdjList organizedFlights;
+        sortFlights(savedFlights, sortBy, organizedFlights);
+        //organizedFlights.printAdjList();
+
+        printFlights(organizedFlights, outFile);
     }
 }

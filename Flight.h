@@ -17,7 +17,7 @@ private:
     DSString origin;
     DSString destination;
 
-    int cost;
+    float cost;
     int time;
 
     DSString airline;
@@ -25,11 +25,13 @@ private:
 public:
     Flight();
     Flight(const DSString& origin, const DSString& destination,
-            int cost, int time, const DSString& airline);
+           float cost, int time, const DSString& airline);
     Flight(const Flight& copy);
 
     DSString getOrigin();
     DSString getDestination();
+    float getCost();
+    int getTime();
 
     void printFlight();
 

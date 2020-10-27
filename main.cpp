@@ -18,9 +18,9 @@ int main(int argc, char** argv){
 
     ifstream inFlightFile(argv[1]);
     ifstream inFile(argv[2]);
-    ofstream outFule(argv[3]);
+    ofstream outFile(argv[3]);
 
-    runFlightPlanner(inFlightFile, inFile);
+    runFlightPlanner(inFlightFile, inFile, outFile);
 
 
 //    std::ofstream outputstream(argv[2]);

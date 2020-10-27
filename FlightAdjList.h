@@ -24,6 +24,10 @@ public:
 
     DSList<Flight> at(int index);
 
+    FlightAdjList sortByCost();
+    FlightAdjList sortByTime();
+
+
     int getSize();
 
     void printAdjList();

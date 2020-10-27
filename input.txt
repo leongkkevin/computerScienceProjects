@@ -1,4 +1,5 @@
-3
+4
 Chicago|Dallas|C
 Dallas|Houston|T
 Dallas|Las Vegas|C
+Dallas|Reno|T
