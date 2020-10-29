@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(20f-flt-pln)
-set (EXE_NAME flight_planner)
+set (EXE_NAME flight-planner)
 
 ##########################################
 # Students, edit the items below.  In the quotes,
@@ -27,7 +27,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(${EXE_NAME} main.cpp
                             DSStack.h
                             DSList.h
-        DSString.h  DSString.cpp
+                            DSString.h  DSString.cpp
                             test.cpp
                             FlightPlanner.cpp FlightPlanner.h
                             Flight.cpp Flight.h
