@@ -4,6 +4,7 @@
 //../flightData.txt ../input.txt ../output.txt
 
 #include <iostream>
+#include <iomanip>
 
 #include "FlightPlanner.h"
 
