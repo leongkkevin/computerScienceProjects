@@ -8,7 +8,6 @@
 #include "Flight.h"
 #include "FlightAdjList.h"
 
-#include "DSAdjList.h"
 #include "DSStack.h"
 
 using namespace std;
@@ -18,9 +17,9 @@ using namespace std;
 
 
 void getFlights(ifstream &inFile);
-void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile);
+void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile, ofstream &outFile);
 
-void sortFlights(FlightAdjList &savedFlights, const DSString &sortBy);
+int sortFlights(FlightAdjList &savedFlights, const DSString &sortBy);
 
 
 

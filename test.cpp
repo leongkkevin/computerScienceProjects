@@ -7,7 +7,7 @@
 #include "DSString.h"
 
 #include "DSStack.h"
-#include "DSAdjList.h"
+#include "FlightAdjList.h"
 
 TEST_CASE("Stack Class", "[Stack]"){
     DSStack<int> intStack;
@@ -58,61 +58,25 @@ TEST_CASE("Stack Class", "[Stack]"){
         REQUIRE(stringStack.getSize() == 0);
         REQUIRE(stringStack.isEmpty());
     }
+
+    SECTION("= Operator"){
+        DSStack<int> intStack2;
+        intStack2 = intStack;
+        REQUIRE(intStack2.getSize() == intStack.getSize());
+        REQUIRE(intStack2.pop() == intStack.pop());
+        REQUIRE(intStack2.pop() == intStack.pop());
+        REQUIRE(intStack2.pop() == intStack.pop());
+
+        DSStack<char> charStack2;
+        charStack2 = charStack;
+        REQUIRE(charStack2.getSize() == charStack.getSize());
+        REQUIRE(charStack2.pop() == charStack.pop());
+        REQUIRE(charStack2.pop() == charStack.pop());
+        REQUIRE(charStack2.pop() == charStack.pop());
+    }
 }
 
-//TEST_CASE("Adjacency List Class", "[AdjList]"){
-//    DSAdjList<int> intAdjList;
-//    intAdjList.add(1);
-//    intAdjList.add(10);
-//    intAdjList.add(100);
-//
-//    DSAdjList<int> intAdjList2(2);
-//    intAdjList2.add(20);
-//    intAdjList2.add(200);
-//
-//
-//    SECTION("Find Test"){
-//        REQUIRE(intAdjList.find(1) == 0);
-//        REQUIRE(intAdjList.find(10) == 1);
-//        REQUIRE(intAdjList.find(100) == 2);
-//        REQUIRE(intAdjList.find(50) == -1);
-//
-//        REQUIRE(intAdjList2.find(2) == 0);
-//        REQUIRE(intAdjList2.find(20) == 1);
-//        REQUIRE(intAdjList2.find(200) == 2);
-//        REQUIRE(intAdjList2.find(50) == -1);
-//    }
-//
-//    SECTION("Add by Index Test"){
-//        intAdjList.addToListNum(0, 2);
-//        REQUIRE(intAdjList.listSize(0) == 2);
-//        intAdjList.addToListNum(1, 11);
-//        REQUIRE(intAdjList.listSize(1) == 2);
-//        intAdjList.addToListNum(2, 101);
-//        REQUIRE(intAdjList.listSize(2) == 2);
-//    }
-//
-//    SECTION("Add by Name Test"){
-//        intAdjList2.addToListName(2, 3);
-//        REQUIRE(intAdjList2.listSize(0) == 2);
-//        intAdjList2.addToListName(20, 21);
-//        REQUIRE(intAdjList2.listSize(1) == 2);
-//        intAdjList2.addToListName(200, 201);
-//        REQUIRE(intAdjList2.listSize(2) == 2);
-//    }
-//
-//    SECTION("AddList Test"){
-//        DSList<int> intList1;
-//        intList1.push_back(1000);
-//        intList1.push_back(10000);
-//        intAdjList.addList(intList1);
-//        REQUIRE(intAdjList.atName(1000, 0) == 1000);
-//        REQUIRE(intAdjList.atNum(3, 1) == 10000);
-//        REQUIRE(intAdjList.listSize(3) == 2);
-//    }
-//
-//    SECTION("List Test"){
-//
-//    }
-//}
+TEST_CASE("Adjacency List Class", "[AdjList]"){
+
+}
 

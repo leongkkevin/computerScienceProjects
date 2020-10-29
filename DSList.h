@@ -216,7 +216,7 @@ public:
     }
 
     //returns the size
-    int getSize(){
+    int getSize() const{
         return size;
     }
 

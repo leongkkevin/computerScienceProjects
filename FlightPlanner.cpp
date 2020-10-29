@@ -134,20 +134,67 @@ void findFlights(FlightAdjList &flightAdjList, ifstream &inFile, FlightAdjList &
     delete[] inputChar;
 }
 
-void sortFlights(FlightAdjList &savedFlights, const DSString &sortBy, FlightAdjList &organizedFlights){
+int sortFlights(FlightAdjList &savedFlights, const DSString &sortBy, FlightAdjList &organizedFlights){
     if(sortBy == "C"){
         //cout << "BY COST: " << endl;
         organizedFlights = savedFlights.sortByCost();
+        return 1;
     } else if(sortBy == "T"){
         //cout << "BY TIME: " << endl;
         organizedFlights = savedFlights.sortByTime();
+        return 2;
+    } else {
+        return 0;
     }
 
     //organizedFlights.printAdjList();
 }
 
-void printFlights(FlightAdjList &organizedFlights, ofstream &outFile){
+void printFlights(FlightAdjList &organizedFlights, ofstream &outFile, int sortedBy){
 
+    outFile << organizedFlights.at(0).getAt(0).getOrigin();
+    outFile << ", " << organizedFlights.at(0).getAt(organizedFlights.at(0).getSize() - 1).getDestination();
+    if(sortedBy == 1){
+        outFile << " (Cost)" << endl;
+    } else if(sortedBy == 2){
+        outFile << " (Time)" << endl;
+    }
+
+        for (int i = 0; i < organizedFlights.getSize(); ++i) {
+            int totalTime = 0;
+            float totalCost = 0.00;
+
+            outFile << "Path " << i + 1 << ": ";
+            outFile << organizedFlights.at(i).getAt(0).getOrigin() << " -> ";
+
+            for (int j = 0; j < organizedFlights.at(i).getSize(); ++j) {
+                totalTime += organizedFlights.at(i).getAt(j).getTime();
+                totalCost += organizedFlights.at(i).getAt(j).getCost();
+
+                outFile << organizedFlights.at(i).getAt(j).getDestination();
+                if (j != organizedFlights.at(i).getSize() - 1) {
+                    outFile << " -> ";
+                } else {
+                    outFile << ". ";
+                }
+            }
+
+            int amountLayovers = organizedFlights.at(i).getSize() - 1;
+            if(amountLayovers >= 1){
+                totalCost += amountLayovers * 19;
+                totalTime += amountLayovers * 43;
+            }
+
+            if(totalCost == 0 && totalTime == 0){
+                outFile << "No Flights Found" << endl;
+                break;
+            } else {
+                outFile << "Time: " << totalTime << " ";
+                outFile << "Cost: " << fixed << setprecision(2) << totalCost;
+                outFile << endl;
+            }
+        }
+    outFile << endl;
 }
 
 void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile, ofstream &outFile) {
@@ -169,9 +216,10 @@ void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile, ofstream &outFil
         //savedFlights.printAdjList();
 
         FlightAdjList organizedFlights;
-        sortFlights(savedFlights, sortBy, organizedFlights);
+       int sortedBy = sortFlights(savedFlights, sortBy, organizedFlights);
         //organizedFlights.printAdjList();
 
-        printFlights(organizedFlights, outFile);
+        outFile << "Flight " << i << ": ";
+        printFlights(organizedFlights, outFile, sortedBy);
     }
 }

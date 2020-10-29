@@ -27,8 +27,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(${EXE_NAME} main.cpp
                             DSStack.h
                             DSList.h
-                            DSAdjList.h
-                            DSString.h  DSString.cpp
+        DSString.h  DSString.cpp
                             test.cpp
                             FlightPlanner.cpp FlightPlanner.h
                             Flight.cpp Flight.h

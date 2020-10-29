@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
+//../flightData.txt ../input.txt ../output.txt
+
 #include <iostream>
 
 #include "FlightPlanner.h"
@@ -21,12 +23,6 @@ int main(int argc, char** argv){
     ofstream outFile(argv[3]);
 
     runFlightPlanner(inFlightFile, inFile, outFile);
-
-
-//    std::ofstream outputstream(argv[2]);
-//    outputstream << "Hello, World!" << std::endl;
-//    outputstream.close();
-//    std::cout << "Hello and wrote sample output file." << std::endl;
 
     return 0;
 }

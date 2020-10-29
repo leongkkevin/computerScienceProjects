@@ -24,11 +24,11 @@ public:
     void push(Type newItem);
     Type pop();
     void peek();
-    bool isEmpty();
+    bool isEmpty() const;
 
     DSList<Type> saveStack();
 
-    int getSize();
+    int getSize() const;
     Type top();
 
     bool searchStack(const Type& inquiry);
@@ -39,7 +39,9 @@ DSStack<Type>::DSStack() = default;
 
 template<typename Type>
 DSStack<Type>::DSStack(const DSStack &copy) {
-
+    for(int i = 0; i < copy.getSize(); ++i){
+        copy.stackList.getAt(i) == this->stackList.getAt(i);
+    }
 }
 
 template<typename Type>
@@ -48,7 +50,9 @@ DSStack<Type>::~DSStack() = default;
 
 template<typename Type>
 DSStack<Type> &DSStack<Type>::operator=(const DSStack &copy) {
-    copy.stackList = this->stackList;
+    for(int i = 0; i < copy.getSize(); ++i){
+        this->stackList.push_back(copy.stackList.getAt(i));
+    }
     return *this;
 }
 
@@ -72,7 +76,7 @@ void DSStack<Type>::peek() {
 }
 
 template<typename Type>
-bool DSStack<Type>::isEmpty() {
+bool DSStack<Type>::isEmpty()const {
     return this->stackList.getSize() <= 0;
 }
 
@@ -80,7 +84,7 @@ template<typename Type>
 DSList<Type> DSStack<Type>::saveStack() {
     DSList<Type> savedList;
 
-    for(int i = 0; i < this->getSize(); ++i){
+    for(int i = 0; i < this->stackList.getSize(); ++i){
         savedList.push_back(this->stackList.getAt(i));
     }
 
@@ -89,7 +93,7 @@ DSList<Type> DSStack<Type>::saveStack() {
 
 
 template<typename Type>
-int DSStack<Type>::getSize() {
+int DSStack<Type>::getSize() const{
     if(isEmpty()){
         return 0;
     } else {

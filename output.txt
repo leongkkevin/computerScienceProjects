@@ -1,0 +1,18 @@
+Flight 0: Chicago, Dallas (Cost)
+Path 1: Chicago -> Las Vegas -> Dallas. Time: 244 Cost: 209.00
+Path 2: Chicago -> Austin -> Dallas. Time: 282 Cost: 261.00
+Path 3: Chicago -> Austin -> Dallas. Time: 294 Cost: 261.00
+
+Flight 1: Dallas, Houston (Time)
+Path 1: Dallas -> Houston. Time: 51 Cost: 101.00
+Path 2: Dallas -> Austin -> Houston. Time: 129 Cost: 212.00
+Path 3: Dallas -> Austin -> Houston. Time: 141 Cost: 212.00
+
+Flight 2: Dallas, Reno (Time)
+Path 1: Dallas -> Reno. No Flights Found
+
+Flight 3: Dallas, Las Vegas (Cost)
+Path 1: Dallas -> Las Vegas. Time: 101 Cost: 90.00
+Path 2: Dallas -> Austin -> Chicago -> Las Vegas. Time: 425 Cost: 380.00
+Path 3: Dallas -> Austin -> Chicago -> Las Vegas. Time: 437 Cost: 380.00
+
