@@ -11,8 +11,8 @@ set (EXE_NAME flight_planner)
 #   set (input02 "train_target.csv")
 # etc....
 
-#set (input01 "input03.txt")
-#set (input02 "")
+set (input01 "flightData.txt")
+set (input02 "input.txt")
 
 #
 ##########################################
