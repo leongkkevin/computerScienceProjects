@@ -31,5 +31,6 @@ add_executable(${EXE_NAME} main.cpp
                             test.cpp
                             FlightPlanner.cpp FlightPlanner.h
                             Flight.cpp Flight.h
-                            FlightAdjList.cpp FlightAdjList.h)
+                            FlightAdjList.cpp FlightAdjList.h
+                            catch.hpp)
 
