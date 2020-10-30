@@ -18,9 +18,9 @@ public:
     FlightAdjList();
     int find(const DSString &search);
 
-    void addToListNum(int listNum, Flight data);
-    void add(Flight data);
-    void addList(DSList<Flight> newList);
+    void addToListNum(int listNum, const Flight& data);
+    void add(const Flight& data);
+    void addList(const DSList<Flight>& newList);
 
     DSList<Flight> at(int index);
 

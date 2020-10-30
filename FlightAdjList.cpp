@@ -22,7 +22,8 @@ int FlightAdjList::find(const DSString &search) {
     return -1;
 }
 
-void FlightAdjList::addToListNum(int listNum, Flight data) {
+void FlightAdjList::addToListNum(int listNum, const Flight& data) {
+    //Flight newFlight(data);
     if(listNum <= this->flightList.getSize()){
         this->flightList.getAt(listNum).push_back(data);
     } else {
@@ -31,12 +32,12 @@ void FlightAdjList::addToListNum(int listNum, Flight data) {
     }
 }
 
-void FlightAdjList::add(Flight data) {
+void FlightAdjList::add(const Flight& data) {
     DSList<Flight> newList;
     newList.push_back(data);
     this->flightList.push_back(newList);
 }
-void FlightAdjList::addList(DSList<Flight> newList) {
+void FlightAdjList::addList(const DSList<Flight>& newList) {
     this->flightList.push_back(newList);
 }
 
