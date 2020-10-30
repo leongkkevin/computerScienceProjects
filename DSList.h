@@ -122,59 +122,59 @@ public:
     }
 
     //removes something by data type
-//    void remove(Type data){
-//        size--;
-//        DSNode<Type>* temp;
-//        if(head->payload == data){
-//            temp = head;
-//            temp->next->previous = nullptr;
-//            head = temp->next;
-//            delete temp;
-//        } else
-//        if(tail->payload == data){
-//            temp = tail;
-//            temp->previous->next = nullptr;
-//            tail = temp->previous;
-//            delete temp;
-//        } else {
-//            temp = head;
-//            while (temp != nullptr) {
-//                if (temp->payload == data) {
-//                    temp->previous->next = temp->next;
-//                    temp->next->previous = temp->previous;
-//                    delete temp;
-//                }
-//                temp = temp->next;
-//            }
-//        }
-//    }
+    void remove(Type data){
+        size--;
+        DSNode<Type>* temp;
+        if(head->payload == data){
+            temp = head;
+            temp->next->previous = nullptr;
+            head = temp->next;
+            delete temp;
+        } else
+        if(tail->payload == data){
+            temp = tail;
+            temp->previous->next = nullptr;
+            tail = temp->previous;
+            delete temp;
+        } else {
+            temp = head;
+            while (temp != nullptr) {
+                if (temp->payload == data) {
+                    temp->previous->next = temp->next;
+                    temp->next->previous = temp->previous;
+                    delete temp;
+                }
+                temp = temp->next;
+            }
+        }
+    }
 //
 //    //removes something at an index
-//    void removeAt(int index){
-//        DSNode<Type>* temp = head;
-//        if(index == 0){
-//            temp->next->previous = nullptr;
-//            head = temp->next;
-//            delete temp;
-//
-//        } else
-//        if(index == size){
-//            temp = tail;
-//            temp->previous->next = nullptr;
-//            tail = temp->previous;
-//            delete temp;
-//
-//        } else {
-//            for (int i = 0; i < index; i++) {
-//                temp = temp->next;
-//            }
-//            temp->previous->next = temp->next;
-//            temp->next->previous = temp->previous;
-//            delete temp;
-//        }
-//
-//        size--;
-//    }
+    void removeAt(int index){
+        DSNode<Type>* temp = head;
+        if(index == 0){
+            temp->next->previous = nullptr;
+            head = temp->next;
+            delete temp;
+
+        } else
+        if(index == size){
+            temp = tail;
+            temp->previous->next = nullptr;
+            tail = temp->previous;
+            delete temp;
+
+        } else {
+            for (int i = 0; i < index; i++) {
+                temp = temp->next;
+            }
+            temp->previous->next = temp->next;
+            temp->next->previous = temp->previous;
+            delete temp;
+        }
+
+        size--;
+    }
 
     //removes the first and returns that value
     Type pop(){

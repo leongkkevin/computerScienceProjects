@@ -27,7 +27,6 @@ public:
     FlightAdjList sortByCost();
     FlightAdjList sortByTime();
 
-
     int getSize();
 
     void printAdjList();

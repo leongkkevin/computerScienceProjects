@@ -72,45 +72,52 @@ void backtrackFlights(FlightAdjList &flightAdjList,
 
     DSList<Flight> savedPaths;
 
-    for(int j = 0; j < flightAdjList.at(wantedListNum).getSize(); ++j ) {
+    if(wantedListNum < 0){
+        Flight noOrigin(wantedOrigin, wantedDestination, 0, 0, "None");
+        savedPaths.push_back(noOrigin);
 
-        flightStack.push(flightAdjList.at(wantedListNum).getAt(j));
+    } else{
 
-        DSStack<int> iStack;
-        int i = 0;
-        while (!flightStack.isEmpty()) {
-            if (flightStack.top().getDestination() == wantedDestination) {
-                savedPaths = flightStack.saveStack();
-                savedFlights.addList(savedPaths);
-                flightStack.pop();
-                if(!iStack.isEmpty()){
-                    i = iStack.pop();
-                }
-                i++;
-            } else {
-                DSString destination = flightStack.top().getDestination();
-                int dest = flightAdjList.find(flightStack.top().getDestination());
-                int size = flightAdjList.at(dest).getSize();
+        for(int j = 0; j < flightAdjList.at(wantedListNum).getSize(); ++j ) {
 
-                for (i; i < size; ++i) {
-                    Flight checkFlight = flightAdjList.at(dest).getAt(i);
-                    if (flightStack.searchStack(checkFlight)) {
-                        continue;
-                    } else {
-                        Flight pushFlight = flightAdjList.at(dest).getAt(i);
-                        flightStack.push(pushFlight);
-                        iStack.push(i);
-                        i = 0;
+            flightStack.push(flightAdjList.at(wantedListNum).getAt(j));
+
+            DSStack<int> iStack;
+            int i = 0;
+            while (!flightStack.isEmpty()) {
+                if (flightStack.top().getDestination() == wantedDestination) {
+                    savedPaths = flightStack.saveStack();
+                    savedFlights.addList(savedPaths);
+                    flightStack.pop();
+                    if(!iStack.isEmpty()){
+                        i = iStack.pop();
+                    }
+                    i++;
+                } else {
+                    DSString destination = flightStack.top().getDestination();
+                    int dest = flightAdjList.find(flightStack.top().getDestination());
+                    int size = flightAdjList.at(dest).getSize();
+
+                    for (i; i < size; ++i) {
+                        Flight checkFlight = flightAdjList.at(dest).getAt(i);
+                        if (flightStack.searchStack(checkFlight)) {
+                            continue;
+                        } else {
+                            Flight pushFlight = flightAdjList.at(dest).getAt(i);
+                            flightStack.push(pushFlight);
+                            iStack.push(i);
+                            i = 0;
+                            break;
+                        }
+                    }
+                    if (i == size && !iStack.isEmpty()) {
+                        flightStack.pop();
+                        i = iStack.pop();
+                        i++;
+                    } else if(iStack.isEmpty()){
+                        flightStack.pop();
                         break;
                     }
-                }
-                if (i == size && !iStack.isEmpty()) {
-                    flightStack.pop();
-                    i = iStack.pop();
-                    i++;
-                } else if(iStack.isEmpty()){
-                    flightStack.pop();
-                    break;
                 }
             }
         }
@@ -189,8 +196,8 @@ void printFlights(FlightAdjList &organizedFlights, ofstream &outFile, int sorted
                 outFile << "No Flights Found" << endl;
                 break;
             } else {
-                outFile << "Time: " << totalTime << " ";
-                outFile << "Cost: " << fixed << setprecision(2) << totalCost;
+                outFile << "Time: " << totalTime << " mins ";
+                outFile << "Cost: $" << fixed << setprecision(2) << totalCost;
                 outFile << endl;
             }
         }
@@ -219,7 +226,7 @@ void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile, ofstream &outFil
        int sortedBy = sortFlights(savedFlights, sortBy, organizedFlights);
         //organizedFlights.printAdjList();
 
-        outFile << "Flight " << i << ": ";
+        outFile << "Flight " << i + 1 << ": ";
         printFlights(organizedFlights, outFile, sortedBy);
     }
 }

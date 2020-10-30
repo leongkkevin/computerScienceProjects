@@ -22,6 +22,7 @@ private:
 public:
     DSString();
     DSString(const char*);
+    DSString(const char);
     DSString(const DSString&);
     ~DSString();
 

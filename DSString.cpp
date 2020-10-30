@@ -12,6 +12,16 @@ DSString::DSString() {
     data[capacity - 1] = '\0';
 }
 
+DSString::DSString(const char character){
+
+    this->size = 1;
+    this->capacity = this->size + 1;
+    this->data = new char[capacity];
+
+    this->data[0] = character;
+    data[1] = '\0';
+}
+
 DSString::DSString(const char *newData) {
     this->size = strlen(newData);
     this->capacity = this->size + 1;

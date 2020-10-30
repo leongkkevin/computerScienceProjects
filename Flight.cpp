@@ -44,6 +44,9 @@ float Flight::getCost() {
 int Flight::getTime() {
     return this->time;
 }
+DSString Flight::getAirline() {
+    return this->airline;
+}
 
 void Flight::printFlight() {
     cout << "From: " << this->origin << " to " << this->destination << endl;
@@ -53,7 +56,8 @@ void Flight::printFlight() {
 }
 
 bool Flight::operator==(const Flight &check) const {
-    if(check.destination == this->destination || check.destination == this->origin){
+    if(check.destination == this->destination ||
+    check.destination == this->origin){
         return true;
     } else{
         return false;

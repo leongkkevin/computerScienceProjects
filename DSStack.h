@@ -23,7 +23,7 @@ public:
 
     void push(Type newItem);
     Type pop();
-    void peek();
+    Type peek();
     bool isEmpty() const;
 
     DSList<Type> saveStack();
@@ -40,7 +40,7 @@ DSStack<Type>::DSStack() = default;
 template<typename Type>
 DSStack<Type>::DSStack(const DSStack &copy) {
     for(int i = 0; i < copy.getSize(); ++i){
-        copy.stackList.getAt(i) == this->stackList.getAt(i);
+        this->stackList.push_back(copy.stackList.getAt(i));
     }
 }
 
@@ -71,8 +71,8 @@ Type DSStack<Type>::pop() {
 }
 
 template<typename Type>
-void DSStack<Type>::peek() {
-    return this->stackList.getAt(this->stackList.getSize());
+Type DSStack<Type>::peek() {
+    return this->stackList.getAt(this->stackList.getSize() - 1);
 }
 
 template<typename Type>

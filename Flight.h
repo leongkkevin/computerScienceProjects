@@ -32,6 +32,7 @@ public:
     DSString getDestination();
     float getCost();
     int getTime();
+    DSString getAirline();
 
     void printFlight();
 

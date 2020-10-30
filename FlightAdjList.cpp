@@ -4,9 +4,10 @@
 
 #include "FlightAdjList.h"
 
-FlightAdjList::FlightAdjList() {
-}
+FlightAdjList::FlightAdjList() = default;
 
+//searches the origins of each flight
+//will return -1 if no flights of that origin is found
 int FlightAdjList::find(const DSString &search) {
     if(this->flightList.getSize() == 0){
         return -1;
@@ -60,19 +61,29 @@ FlightAdjList FlightAdjList::sortByCost(){
         for(int g = 0; g < listSize; ++g){
             sumCost += this->flightList.getAt(f).getAt(g).getCost();
         }
+        int amountLayovers = flightList.getAt(f).getSize() - 1;
+        if(amountLayovers >= 1){
+            sumCost += amountLayovers * 19;
+        }
         totalCosts[f] = sumCost;
     }
 
     float min;
     int minIndex;
-    for(int count = 0; count < 3; count++){
+
+    int printAmt = 0;
+    if(this->flightList.getSize() < 3){
+        printAmt = flightList.getSize();
+    } else{
+        printAmt = 3;
+    }
+    for(int count = 0; count < printAmt; count++){
+        min = totalCosts[0];
+        minIndex = 0;
         for (int i = 0; i < size; ++i) {
-            min = totalCosts[i];
-            for (int j = 0; j < size; ++j) {
-                if (min > totalCosts[j]) {
-                    min = totalCosts[j];
-                    minIndex = j;
-                }
+            if (min > totalCosts[i]) {
+                min = totalCosts[i];
+                minIndex = i;
             }
         }
         sortedFlights.addList(flightList.getAt(minIndex));
@@ -86,28 +97,38 @@ FlightAdjList FlightAdjList::sortByTime(){
     FlightAdjList sortedFlights;
 
     int size = this->flightList.getSize();
-    float *totalTime = new float[size];
+    int *totalTime = new int[size];
 
     for(int f = 0; f < size; ++f){
-        float sumTime = 0;
+        int sumTime = 0;
         int listSize = this->flightList.getAt(f).getSize();
         for(int g = 0; g < listSize; ++g){
-            sumTime += this->flightList.getAt(f).getAt(g).getCost();
+            sumTime += this->flightList.getAt(f).getAt(g).getTime();
+        }
+        int amountLayovers = flightList.getAt(f).getSize() - 1;
+        if(amountLayovers >= 1){
+            sumTime += amountLayovers * 43;
         }
         totalTime[f] = sumTime;
     }
 
-    float min;
+    int min;
     int minIndex;
-    for(int count = 0; count < 3; count++){
-        for (int i = 0; i < size; ++i) {
-            min = totalTime[i];
-            minIndex = i;
-            for (int j = 0; j < size; ++j) {
-                if (min > totalTime[j]) {
-                    min = totalTime[j];
-                    minIndex = j;
-                }
+
+    int printAmt = 0;
+    if(this->flightList.getSize() < 3){
+        printAmt = flightList.getSize();
+    } else{
+        printAmt = 3;
+    }
+    for(int count = 0; count < printAmt; count++){
+        min = totalTime[0];
+        minIndex = 0;
+        for (int j = 0; j < size; ++j) {
+            int ch = totalTime[j];
+            if (min > totalTime[j]) {
+                min = totalTime[j];
+                minIndex = j;
             }
         }
         sortedFlights.addList(flightList.getAt(minIndex));
