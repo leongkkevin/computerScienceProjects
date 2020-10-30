@@ -64,14 +64,12 @@ public:
     //Rule of Three
     ~DSList(){
         DSNode<Type> *temp = head;
-        DSNode<Type> *tempNext = temp->next;
         if(head!= nullptr) {
             for (int i = 0; i < size; i++) {
                 delete temp;
-                temp = tempNext;
+                temp = temp->next;
             }
             delete temp;
-            delete tempNext;
         }
     }
 
@@ -112,7 +110,6 @@ public:
             this->head = new DSNode<Type>(data);
             this->tail = this->head;
             this->size++;
-            this->curr = this->head;
         } else{
             tail->next = new DSNode<Type>(data);
             tail->next->previous = tail;
