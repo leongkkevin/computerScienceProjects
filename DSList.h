@@ -54,25 +54,25 @@ private:
     DSNode<Type>* head;
     DSNode<Type>* tail;
     int size;
-
-    DSNode<Type>* curr;
 public:
     //Constructors
     DSList(){
         head = tail = nullptr;;
         size = 0;
-
-        curr = head;
     }
 
     //Rule of Three
     ~DSList(){
-        DSNode<Type>* temp = head;
-        for(int i = 0; i < size; i++){
+        DSNode<Type> *temp = head;
+        DSNode<Type> *tempNext = temp->next;
+        if(head!= nullptr) {
+            for (int i = 0; i < size; i++) {
+                delete temp;
+                temp = tempNext;
+            }
             delete temp;
-            temp = temp-> next;
+            delete tempNext;
         }
-
     }
 
     DSList(const DSList& copy){
@@ -85,8 +85,6 @@ public:
             push_back(temp->payload);
             temp = temp->next;
         }
-
-        curr = copy.curr;
 
         delete temp;
     }
@@ -103,7 +101,6 @@ public:
             }
             delete temp;
         }
-        curr = copy.curr;
 
         return *this;
     }
@@ -221,10 +218,6 @@ public:
     //returns the size
     int getSize() const{
         return size;
-    }
-
-    DSNode<Type>& current(){
-        return *curr;
     }
 
 };

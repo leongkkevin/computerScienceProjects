@@ -41,7 +41,7 @@ DSString::DSString(const DSString &copyString) {
 }
 
 DSString::~DSString() {
-    delete[] data;
+    delete[] this->data;
 }
 
 //Overloaded Operators
