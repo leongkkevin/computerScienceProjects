@@ -25,6 +25,10 @@ int main(int argc, char** argv){
 
     runFlightPlanner(inFlightFile, inFile, outFile);
 
+    inFlightFile.close();
+    inFile.close();
+    outFile.close();
+
     return 0;
 }
 
