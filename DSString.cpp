@@ -5,7 +5,6 @@
 #include "DSString.h"
 
 DSString::DSString() {
-
     this->size = 0;
     this->capacity = this->size+1;
     this-> data = new char[this->capacity];

@@ -87,6 +87,8 @@ public:
         }
 
         curr = copy.curr;
+
+        delete temp;
     }
 
     DSList &operator=(const DSList &copy) {
@@ -99,6 +101,7 @@ public:
                 push_back(temp->payload);
                 temp = temp->next;
             }
+            delete temp;
         }
         curr = copy.curr;
 
