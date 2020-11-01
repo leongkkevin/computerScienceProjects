@@ -13,7 +13,7 @@ int FlightAdjList::find(const DSString &search) {
         return -1;
     }
 
-    for(int i = 0; i < this->flightList.getSize(); ++i){
+    for(int i = 0; i < this->flightList.getSize() - 1; ++i){
         DSString originString = this->flightList.getAt(i).getAt(0).getOrigin();
         if(originString == search){
             return i;
@@ -62,7 +62,7 @@ FlightAdjList FlightAdjList::sortByCost(){
         for(int g = 0; g < listSize; ++g){
             sumCost += this->flightList.getAt(f).getAt(g).getCost();
         }
-        int amountLayovers = flightList.getAt(f).getSize() - 1;
+        int amountLayovers = flightList.getAt(f).getSize();
         if(amountLayovers >= 1){
             sumCost += amountLayovers * 19;
         }

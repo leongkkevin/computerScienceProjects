@@ -63,13 +63,17 @@ public:
 
     //Rule of Three
     ~DSList(){
-        DSNode<Type> *temp = head;
         if(head!= nullptr) {
-            for (int i = 0; i < size - 1; i++) {
+            DSNode<Type> *temp = head;
+            DSNode<Type> *tempNext = temp ->next;
+            for (int i = 0; i < size; i++) {
                 delete temp;
-                temp = temp->next;
+                temp = tempNext;
+                if(temp != nullptr)
+                {
+                    tempNext = temp->next;
+                }
             }
-            delete temp;
         }
     }
 

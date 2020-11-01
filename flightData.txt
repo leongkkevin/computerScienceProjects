@@ -11,7 +11,7 @@ Austin|Chicago|100|45|Spirit
 Austin|Billings|120|60|American
 Austin|Detroit|111|55|Southwestern
 Billings|Detroit|75|28|Spirit
-Billiings|El Paso|50|73|Southwestern
+Billings|El Paso|50|73|Southwestern
 Chicago|Detroit|70|80|American
 Chicago|Greensboro|65|50|American
 Chicago|Fresno|52|30|Spirit

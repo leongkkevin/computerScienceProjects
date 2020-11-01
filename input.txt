@@ -1,4 +1,5 @@
-10
+11
+Austin|El Paso|T
 Dallas|Houston|T
 Dallas|Austin|C
 Dallas|Illinois|T
@@ -8,4 +9,4 @@ Austin|El Paso|T
 Billings|Detroit|C
 Billings|Greensboro|C
 Chicago|Greensboro|T
-Philiadelphia|Texas|T
+Philadelphia|Texas|T

@@ -16,6 +16,7 @@ private:
 
 public:
     FlightAdjList();
+    ~FlightAdjList() = default;
     int find(const DSString &search);
 
     void addToListNum(int listNum, const Flight& data);

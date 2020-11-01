@@ -24,6 +24,7 @@ private:
 
 public:
     Flight();
+    ~Flight() = default;
     Flight(const DSString& origin, const DSString& destination,
            float cost, int time, const DSString& airline);
     Flight(const Flight& copy);
