@@ -22,6 +22,7 @@ int FlightAdjList::find(const DSString &search) {
     return -1;
 }
 
+//Adds to list at a specific list in an index
 void FlightAdjList::addToListNum(int listNum, const Flight& data) {
     //Flight newFlight(data);
     if(listNum <= this->flightList.getSize()){
@@ -32,20 +33,23 @@ void FlightAdjList::addToListNum(int listNum, const Flight& data) {
     }
 }
 
+//adds a flight into a list into the adjacency list
 void FlightAdjList::add(const Flight& data) {
     DSList<Flight> newList;
     newList.push_back(data);
     this->flightList.push_back(newList);
 }
+//adds an entire list
 void FlightAdjList::addList(const DSList<Flight>& newList) {
     this->flightList.push_back(newList);
 }
 
+//Returns a list at that index
 DSList<Flight> FlightAdjList::at(int index) {
     return this->flightList.getAt(index);
 }
 
-
+//Returns the size of the list
 int FlightAdjList::getSize() {
     return this->flightList.getSize();
 }
@@ -56,13 +60,14 @@ FlightAdjList FlightAdjList::sortByCost(){
     int size = this->flightList.getSize();
     float *totalCosts = new float[size];
 
+    //Sums up all the flight costs and adds them to an array
     for(int f = 0; f < size; ++f){
         float sumCost = 0;
         int listSize = this->flightList.getAt(f).getSize();
         for(int g = 0; g < listSize; ++g){
             sumCost += this->flightList.getAt(f).getAt(g).getCost();
         }
-        int amountLayovers = flightList.getAt(f).getSize();
+        int amountLayovers = flightList.getAt(f).getSize() - 1;
         if(amountLayovers >= 1){
             sumCost += amountLayovers * 19;
         }
@@ -72,12 +77,14 @@ FlightAdjList FlightAdjList::sortByCost(){
     float min;
     int minIndex;
 
+    //Sets the amount of flights to print
     int printAmt = 0;
     if(this->flightList.getSize() < 3){
         printAmt = flightList.getSize();
     } else{
         printAmt = 3;
     }
+    //Sorts the flights and adds them to an adjacency list
     for(int count = 0; count < printAmt; count++){
         min = totalCosts[0];
         minIndex = 0;
@@ -100,6 +107,7 @@ FlightAdjList FlightAdjList::sortByTime(){
     int size = this->flightList.getSize();
     int *totalTime = new int[size];
 
+    //Sums the times of the flight and adds those to an array
     for(int f = 0; f < size; ++f){
         int sumTime = 0;
         int listSize = this->flightList.getAt(f).getSize();
@@ -126,7 +134,6 @@ FlightAdjList FlightAdjList::sortByTime(){
         min = totalTime[0];
         minIndex = 0;
         for (int j = 0; j < size; ++j) {
-            int ch = totalTime[j];
             if (min > totalTime[j]) {
                 min = totalTime[j];
                 minIndex = j;

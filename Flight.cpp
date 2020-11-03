@@ -55,6 +55,7 @@ void Flight::printFlight() {
     cout << "\tWith: " << this->airline << endl;
 }
 
+//Returns true if the flight's destination is the other flight's origin or destination
 bool Flight::operator==(const Flight &check) const {
     if(check.destination == this->destination ||
     check.destination == this->origin){

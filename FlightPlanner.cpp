@@ -4,23 +4,27 @@
 
 #include "FlightPlanner.h"
 
+//Clears a character array
 void clearCArray(char* charArray){
     for(int i = 0; i < 100; ++i){
         charArray[i] = (char)0;
     }
 }
 
+//sets a string to a character
 void setString(DSString& out, char* charArray, ifstream &inFile, char dlm){
     inFile.getline(charArray, 100, dlm);
     out = charArray;
     clearCArray(charArray);
 }
+//sets a string to an integer
 void setInt(int& out, char* charArray, ifstream &inFile, char dlm){
     inFile.getline(charArray, 100, dlm);
     out = atoi(charArray);
     clearCArray(charArray);
 }
 
+//parses the file and makes the flight adjacency list
 void getFlights(ifstream &inFlightFile, FlightAdjList &flightAdjList){
     char numFlightsC[10];
     inFlightFile.getline(numFlightsC, 10, '\n');
@@ -43,6 +47,7 @@ void getFlights(ifstream &inFlightFile, FlightAdjList &flightAdjList){
         DSString airline;
         setString(airline, inputArray, inFlightFile, '\n');
 
+        //creates both the to and from flight (two-way flights)
         Flight flight(flightOrigin, flightDest, cost, time, airline);
         Flight oppositeFlight(flightDest, flightOrigin, cost, time, airline);
 
@@ -62,13 +67,13 @@ void getFlights(ifstream &inFlightFile, FlightAdjList &flightAdjList){
     }
 }
 
+//uses iterative backtracking to find all flights possible
 void backtrackFlights(FlightAdjList &flightAdjList,
         const DSString& wantedOrigin, const DSString& wantedDestination,
         FlightAdjList &savedFlights){
 
     int wantedListNum = flightAdjList.find(wantedOrigin);
     DSStack<Flight> flightStack;
-
     DSList<Flight> savedPaths;
 
     if(wantedListNum < 0){
@@ -79,8 +84,10 @@ void backtrackFlights(FlightAdjList &flightAdjList,
 
         for(int j = 0; j < flightAdjList.at(wantedListNum).getSize(); ++j ) {
 
+            //pushes the first flight onto the stack
             flightStack.push(flightAdjList.at(wantedListNum).getAt(j));
 
+            //iStack stores the location of the iterator
             DSStack<int> iStack;
             int i = 0;
             while (!flightStack.isEmpty()) {
@@ -88,9 +95,11 @@ void backtrackFlights(FlightAdjList &flightAdjList,
                     savedPaths = flightStack.saveStack();
                     savedFlights.addList(savedPaths);
                     flightStack.pop();
+
                     if(!iStack.isEmpty()){
                         i = iStack.pop();
                     }
+
                     i++;
                 } else {
                     DSString destination = flightStack.top().getDestination();
@@ -99,6 +108,7 @@ void backtrackFlights(FlightAdjList &flightAdjList,
 
                     for (i; i < size; ++i) {
                         Flight checkFlight = flightAdjList.at(dest).getAt(i);
+
                         if (flightStack.searchStack(checkFlight)) {
                             continue;
                         } else {
@@ -109,6 +119,7 @@ void backtrackFlights(FlightAdjList &flightAdjList,
                             break;
                         }
                     }
+
                     if (i == size && !iStack.isEmpty()) {
                         flightStack.pop();
                         i = iStack.pop();
@@ -117,12 +128,14 @@ void backtrackFlights(FlightAdjList &flightAdjList,
                         flightStack.pop();
                         break;
                     }
+
                 }
             }
         }
     }
 }
 
+//finds all paths from wantedOrigin to wantedDestination
 void findFlights(FlightAdjList &flightAdjList, ifstream &inFile, FlightAdjList &savedFlights){
     char* inputChar = new char[100];
     DSString wantedOrigin;
@@ -140,6 +153,7 @@ void findFlights(FlightAdjList &flightAdjList, ifstream &inFile, FlightAdjList &
     delete[] inputChar;
 }
 
+//Sorts flights by time or by cost
 int sortFlights(FlightAdjList &savedFlights, const DSString &sortBy, FlightAdjList &organizedFlights){
     if(sortBy == "C"){
         //cout << "BY COST: " << endl;
@@ -156,6 +170,7 @@ int sortFlights(FlightAdjList &savedFlights, const DSString &sortBy, FlightAdjLi
     //organizedFlights.printAdjList();
 }
 
+//writes flights to output
 void printFlights(FlightAdjList &organizedFlights, ofstream &outFile, int sortedBy){
 
     outFile << organizedFlights.at(0).getAt(0).getOrigin();
@@ -204,6 +219,7 @@ void printFlights(FlightAdjList &organizedFlights, ofstream &outFile, int sorted
     outFile << endl;
 }
 
+//Runs the code
 void runFlightPlanner(ifstream &inFlightFile, ifstream &inFile, ofstream &outFile) {
     FlightAdjList flightAdjList;
     getFlights(inFlightFile, flightAdjList);

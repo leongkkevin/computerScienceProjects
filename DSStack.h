@@ -37,6 +37,7 @@ public:
 template<typename Type>
 DSStack<Type>::DSStack() = default;
 
+//Copy Constructor
 template<typename Type>
 DSStack<Type>::DSStack(const DSStack &copy) {
     for(int i = 0; i < copy.getSize(); ++i){
@@ -48,6 +49,7 @@ template<typename Type>
 DSStack<Type>::~DSStack() = default;
 
 
+//Assignment Operator
 template<typename Type>
 DSStack<Type> &DSStack<Type>::operator=(const DSStack &copy) {
     for(int i = 0; i < copy.getSize(); ++i){
@@ -56,11 +58,13 @@ DSStack<Type> &DSStack<Type>::operator=(const DSStack &copy) {
     return *this;
 }
 
+//Pushes the stack
 template<typename Type>
 void DSStack<Type>::push(Type newItem) {
     this->stackList.push_back(newItem);
 }
 
+//Pops the last value from the stack
 template<typename Type>
 Type DSStack<Type>::pop() {
     if(isEmpty()){
@@ -70,16 +74,21 @@ Type DSStack<Type>::pop() {
     }
 }
 
+//Like pop but doesn't return
 template<typename Type>
 Type DSStack<Type>::peek() {
     return this->stackList.getAt(this->stackList.getSize() - 1);
 }
 
+//Checks the size of the stackList
+//Returns true if size is 0
 template<typename Type>
 bool DSStack<Type>::isEmpty()const {
     return this->stackList.getSize() <= 0;
 }
 
+//Saves the stack's current list
+//copies into a list and returns it
 template<typename Type>
 DSList<Type> DSStack<Type>::saveStack() {
     DSList<Type> savedList;
@@ -91,7 +100,7 @@ DSList<Type> DSStack<Type>::saveStack() {
     return savedList;
 }
 
-
+//Returns size of the list
 template<typename Type>
 int DSStack<Type>::getSize() const{
     if(isEmpty()){
@@ -101,11 +110,14 @@ int DSStack<Type>::getSize() const{
     }
 }
 
+//Returns the top of the stack
 template<typename Type>
 Type DSStack<Type>::top() {
     return this->stackList.getAt(this->stackList.getSize() - 1);
 }
 
+//Iterates through the stackList
+//if item is found it returns true
 template<typename Type>
 bool DSStack<Type>::searchStack(const Type& inquiry) {
     bool toReturn;

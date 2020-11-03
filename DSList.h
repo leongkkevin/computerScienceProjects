@@ -79,6 +79,7 @@ public:
         }
     }
 
+    //copy constructor
     DSList(const DSList& copy){
         this->head = nullptr;
         this->tail = nullptr;
@@ -93,6 +94,7 @@ public:
         delete temp;
     }
 
+    //Equals assignment operator
     DSList &operator=(const DSList &copy) {
         if (this != &copy) {
             if(this->head != nullptr){
@@ -164,8 +166,8 @@ public:
             }
         }
     }
-//
-//    //removes something at an index
+
+    //removes something at an index
     void removeAt(int index){
         DSNode<Type>* temp = head;
         if(index == 0){
