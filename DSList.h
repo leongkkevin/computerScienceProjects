@@ -22,6 +22,7 @@ public:
 
     DSNode(){
         next = nullptr;
+        previous = nullptr;
     }
 
     DSNode(Type payload) {
@@ -69,8 +70,7 @@ public:
             for (int i = 0; i < size; i++) {
                 delete temp;
                 temp = tempNext;
-                if(temp != nullptr)
-                {
+                if(temp != nullptr){
                     tempNext = temp->next;
                 }
             }
@@ -93,7 +93,20 @@ public:
 
     DSList &operator=(const DSList &copy) {
         if (this != &copy) {
-            this->head = this->tail = nullptr;
+            if(this->head != nullptr){
+                DSNode<Type> *temp = head;
+                DSNode<Type> *tempNext = temp ->next;
+                for (int i = 0; i < size; i++) {
+                    delete temp;
+                    temp = tempNext;
+                    if(temp != nullptr){
+                        tempNext = temp->next;
+                    }
+                }
+            }
+
+            this->head = nullptr;
+            this->tail = nullptr;
             this->size = 0;
 
             DSNode<Type>* temp = copy.head;
@@ -101,7 +114,7 @@ public:
                 push_back(temp->payload);
                 temp = temp->next;
             }
-            delete temp;
+            //delete temp;
         }
 
         return *this;

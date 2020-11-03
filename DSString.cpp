@@ -4,11 +4,11 @@
 
 #include "DSString.h"
 
-DSString::DSString() {
+DSString::DSString(){
     this->size = 0;
-    this->capacity = this->size+1;
-    this-> data = new char[this->capacity];
-    data[capacity - 1] = '\0';
+    this->capacity = 1;
+    this-> data = new char[1];
+    data[0] = '\0';
 }
 
 DSString::DSString(const char character){
@@ -172,9 +172,10 @@ void DSString::resize(int newLength){
     }
 
 //    delete old data
-    if(this->size != 0) {
-        delete[] this->data;
-    }
+//    if(this->size != 0) {
+//        delete[] this->data;
+//    }
+    delete[] this->data;
 
     //new data with new capacity;
     this->data = new char[newLength + 1];

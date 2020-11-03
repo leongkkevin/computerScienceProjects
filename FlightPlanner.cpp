@@ -59,7 +59,6 @@ void getFlights(ifstream &inFlightFile, FlightAdjList &flightAdjList){
         } else {
             flightAdjList.add(oppositeFlight);
         }
-
     }
 }
 
@@ -179,6 +178,7 @@ void printFlights(FlightAdjList &organizedFlights, ofstream &outFile, int sorted
                 totalCost += organizedFlights.at(i).getAt(j).getCost();
 
                 outFile << organizedFlights.at(i).getAt(j).getDestination();
+                outFile << " (" << organizedFlights.at(i).getAt(j).getAirline() << ")";
                 if (j != organizedFlights.at(i).getSize() - 1) {
                     outFile << " -> ";
                 } else {
