@@ -1,51 +1,46 @@
-Flight 1: Austin, El Paso (Time)
-Path 1: Austin -> Detroit (Southwestern) -> El Paso (Southwestern). Time: 168 mins Cost: $165.00
-Path 2: Austin -> Billings (American) -> El Paso (Southwestern). Time: 176 mins Cost: $189.00
-Path 3: Austin -> Billings (American) -> Detroit (Spirit) -> El Paso (Southwestern). Time: 244 mins Cost: $268.00
-
-Flight 2: Dallas, Houston (Time)
+Flight 1: Dallas, Houston (Time)
 Path 1: Dallas -> Houston (Spirit). Time: 51 mins Cost: $101.00
 Path 2: Dallas -> Austin (Spirit) -> Houston (United). Time: 84 mins Cost: $164.00
 Path 3: Dallas -> Austin (Spirit) -> Houston (United). Time: 129 mins Cost: $215.00
 
-Flight 3: Dallas, Austin (Cost)
+Flight 2: Dallas, Austin (Cost)
 Path 1: Dallas -> Austin (Spirit). Time: 2 mins Cost: $50.00
 Path 2: Dallas -> Austin (Spirit). Time: 47 mins Cost: $101.00
 Path 3: Dallas -> Houston (Spirit) -> Austin (United). Time: 133 mins Cost: $215.00
 
-Flight 4: Dallas, Illinois (Time)
+Flight 3: Dallas, Illinois (Time)
 Path 1: Dallas -> Austin (Spirit) -> Illinois (Spirit). Time: 95 mins Cost: $109.00
 Path 2: Dallas -> Austin (Spirit) -> Illinois (Spirit). Time: 140 mins Cost: $160.00
 Path 3: Dallas -> Austin (American) -> Illinois (Spirit). Time: 152 mins Cost: $1059.00
 
-Flight 5: Dallas, Houston (Cost)
+Flight 4: Dallas, Houston (Cost)
 Path 1: Dallas -> Houston (Spirit). Time: 51 mins Cost: $101.00
 Path 2: Dallas -> Austin (Spirit) -> Houston (United). Time: 84 mins Cost: $164.00
 Path 3: Dallas -> Austin (Spirit) -> Houston (United). Time: 129 mins Cost: $215.00
 
-Flight 6: Dallas, Texas (Cost)
+Flight 5: Dallas, Texas (Cost)
 Path 1: Dallas -> Texas (None). No Flights Found
 
-Flight 7: Austin, El Paso (Time)
+Flight 6: Austin, El Paso (Time)
 Path 1: Austin -> Detroit (Southwestern) -> El Paso (Southwestern). Time: 168 mins Cost: $165.00
 Path 2: Austin -> Billings (American) -> El Paso (Southwestern). Time: 176 mins Cost: $189.00
-Path 3: Austin -> Billings (American) -> Detroit (Spirit) -> El Paso (Southwestern). Time: 244 mins Cost: $268.00
+Path 3: Austin -> Detroit (Southwestern) -> Billings (Spirit) -> El Paso (Southwestern). Time: 242 mins Cost: $274.00
 
-Flight 8: Billings, Detroit (Cost)
+Flight 7: Billings, Detroit (Cost)
 Path 1: Billings -> Detroit (Spirit). Time: 28 mins Cost: $75.00
 Path 2: Billings -> El Paso (Southwestern) -> Detroit (Southwestern). Time: 186 mins Cost: $104.00
 Path 3: Billings -> Austin (American) -> Detroit (Southwestern). Time: 158 mins Cost: $250.00
 
-Flight 9: Billings, Greensboro (Cost)
+Flight 8: Billings, Greensboro (Cost)
 Path 1: Billings -> El Paso (Southwestern) -> Greensboro (American). Time: 196 mins Cost: $102.00
 Path 2: Billings -> Detroit (Spirit) -> El Paso (Southwestern) -> Greensboro (American). Time: 264 mins Cost: $181.00
 Path 3: Billings -> Detroit (Spirit) -> Chicago (American) -> Greensboro (American). Time: 244 mins Cost: $248.00
 
-Flight 10: Chicago, Greensboro (Time)
+Flight 9: Chicago, Greensboro (Time)
 Path 1: Chicago -> Greensboro (American). Time: 50 mins Cost: $65.00
 Path 2: Chicago -> Fresno (Spirit) -> Greensboro (United). Time: 133 mins Cost: $151.00
 Path 3: Chicago -> Detroit (American) -> Fresno (United) -> Greensboro (United). Time: 264 mins Cost: $263.00
 
-Flight 11: Philadelphia, Texas (Time)
-Path 1: Philadelphia -> Texas (None). No Flights Found
+Flight 10: Philiadelphia, Texas (Time)
+Path 1: Philiadelphia -> Texas (None). No Flights Found
 

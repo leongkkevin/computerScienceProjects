@@ -13,7 +13,7 @@ int FlightAdjList::find(const DSString &search) {
         return -1;
     }
 
-    for(int i = 0; i < this->flightList.getSize() - 1; ++i){
+    for(int i = 0; i < this->flightList.getSize(); ++i){
         DSString originString = this->flightList.getAt(i).getAt(0).getOrigin();
         if(originString == search){
             return i;

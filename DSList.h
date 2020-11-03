@@ -16,18 +16,20 @@ class DSNode {
 private:
 
 public:
+    //Nodes have a templated payload
+    //It is doubly linked
     Type payload;
     DSNode* next;
     DSNode* previous;
 
     DSNode(){
-        next = nullptr;
-        previous = nullptr;
+        this->next = nullptr;
+        this->previous = nullptr;
     }
 
     DSNode(Type payload) {
         this->payload = payload;
-        next = previous = nullptr;
+        this->next = this->previous = nullptr;
     }
 
     ~DSNode()= default;
